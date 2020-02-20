@@ -10,7 +10,7 @@
 """
 import random
 
-
+#oxo
 """
 la liste des caractères semi-graphiques correspondant aux différentes cartes
 l'indice du caractère dans la liste correspond au codage des murs sur la carte
