@@ -120,3 +120,6 @@ def accessibleDist(plateau,ligD,colD,ligA,colA):
               de départ et la case d'arrivée
     """
     pass
+
+if __name__=='__main__':
+  

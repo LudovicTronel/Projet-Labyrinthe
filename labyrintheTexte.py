@@ -268,3 +268,5 @@ if __name__=='__main__':
     g=LabyrintheTexte(l)
     #démarrage de la partie
     demarrer(g)
+
+if __name__=='__main__':

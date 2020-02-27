@@ -221,3 +221,5 @@ def passageEst(carte1,carte2):
     résultat un booléen    
     """
     pass
+
+if __name__=='__main__':

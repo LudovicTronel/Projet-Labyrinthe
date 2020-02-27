@@ -241,3 +241,5 @@ def finirTour(labyrinthe):
               2 si le joueur courant a trouvé son dernier trésor (la partie est donc terminée)
     """
     pass
+
+if __name__=='__main__':

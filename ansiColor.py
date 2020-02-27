@@ -42,3 +42,5 @@ def pcouleur(texte,couleurCar=9,couleurFond=9,style=0):
      print("\x1b["+str(style)+";"+str(30+couleurCar)+";"+str(40+couleurFond)+"m"+texte+fin,sep='',end='')
 
 clearscreen()
+
+if __name__=='__main__':

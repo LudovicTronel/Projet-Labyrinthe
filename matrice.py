@@ -103,3 +103,5 @@ def decalageColonneEnBas(matrice, numCol, nouvelleValeur=0):
     """
     pass
 
+if __name__=='__main__':
+   Matrice(10,10)
