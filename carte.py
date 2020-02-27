@@ -10,7 +10,6 @@
 """
 import random
 
-#oxo
 """
 la liste des caractères semi-graphiques correspondant aux différentes cartes
 l'indice du caractère dans la liste correspond au codage des murs sur la carte
@@ -18,16 +17,14 @@ le caractère 'Ø' indique que l'indice ne correspond pas à une carte
 """
 listeCartes=['╬','╦','╣','╗','╩','═','╝','Ø','╠','╔','║','Ø','╚','Ø','Ø','Ø']
 
-
 def Carte( nord, est, sud, ouest, tresor=0, pions=[]):
-    """
-    permet de créer une carte:
+    """permet de créer une carte:
     paramètres:
     nord, est, sud et ouest sont des booléens indiquant s'il y a un mur ou non dans chaque direction
     tresor est le numéro du trésor qui se trouve sur la carte (0 s'il n'y a pas de trésor)
-    pions est la liste des pions qui sont posés sur la carte (un pion est un entier entre 1 et 4)
-    """
-    pass
+    pions est la liste des pions qui sont posés sur la carte (un pion est un entier entre 1 et 4)"""
+    carte = {'Nord': nord, 'Est': est, 'Sud': sud, 'Ouest': ouest, 'Tresor': tresor, 'Pions': pions}
+    return carte
 
 def estValide(c):
     """

@@ -13,17 +13,13 @@
 # contructeur et accesseurs
 #-----------------------------------------
 
-def Matrice(nbLignes,nbColonnes,valeurParDefaut=0):
-    """
-    crée une matrice de nbLignes lignes sur nbColonnes colonnes en mettant 
-    valeurParDefaut dans chacune des cases
-    paramètres: 
-      nbLignes un entier strictement positif qui indique le nombre de lignes
-      nbColonnes un entier strictement positif qui indique le nombre de colonnes
-      valeurParDefaut la valeur par défaut
-    résultat la matrice ayant les bonnes propriétés
-    """
-    pass
+def Matrice(nbLignes, nbColonnes, valeurParDefaut=0):
+    if nbLignes<0 or nbColonnes<0:
+        return('Veuillez entrer des chiffres positifs pour la création du plateau')
+    else :
+        for i in range(nbColonnes):
+            print(([valeurParDefaut for i in range(nbLignes)]))
+
 
 def getNbLignes(matrice):
     """

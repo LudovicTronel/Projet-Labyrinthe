@@ -40,3 +40,5 @@ def pcouleur(texte,couleurCar=9,couleurFond=9,style=0):
          style: un entier indiquant le style de la police (gras, italique etc.)
      """
      print("\x1b["+str(style)+";"+str(30+couleurCar)+";"+str(40+couleurFond)+"m"+texte+fin,sep='',end='')
+
+clearscreen()

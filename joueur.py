@@ -10,22 +10,21 @@
 """
 
 def Joueur(nom):
-    """
-    creer un nouveau joueur portant le nom passé en paramètre. Ce joueur possède une liste de trésors à trouver vide
+    """creer un nouveau joueur portant le nom passé en paramètre. Ce joueur possède une liste de trésors à trouver vide
     paramètre: nom une chaine de caractères
-    retourne le joueur ainsi créé
-    """
-    pass
+    retourne le joueur ainsi créé"""
+    return (nom, [])
+    
 def ajouterTresor(joueur,tresor):
     """
     ajoute un trésor à trouver à un joueur (ce trésor sera ajouter en fin de liste) Si le trésor est déjà dans la liste des trésors à trouver la fonction ne fait rien
     paramètres:
         joueur le joueur à modifier
         tresor un entier strictement positif
-    la fonction ne retourne rien mais modifie le joueur
-    """
-    pass
-
+    la fonction ne retourne rien mais modifie le joueur"""
+    if tresor not in joueur:
+        joueur[1].append(tresor)
+        
 def prochainTresor(joueur):
     """
     retourne le prochain trésor à trouver d'un joueur, retourne None si aucun trésor n'est à trouver
@@ -33,8 +32,11 @@ def prochainTresor(joueur):
         joueur le joueur
     résultat un entier représentant le trésor ou None
     """
-    pass
-
+    if joueur[1]==[]:
+        return None
+    else:
+        return joueur[1] 
+        
 def tresorTrouve(joueur):
     """ 
     enlève le premier trésor à trouver car le joueur l'a trouvé
@@ -42,20 +44,35 @@ def tresorTrouve(joueur):
         joueur le joueur
     la fonction ne retourne rien mais modifie le joueur
     """
-    pass
-
+    del joueur[1][0]
+    
 def getNbTresorsRestants(joueur):
     """
     retourne le nombre de trésors qu'il reste à trouver
     paramètre: joueur le joueur
     résultat: le nombre de trésors attribués au joueur
     """
-    pass
-
+    return len(joueur[1])
+    
 def getNom(joueur):
     """
     retourne le nom du joueur
     paramètre: joueur le joueur
     résultat: le nom du joueur 
     """
-    pass
+    return joueur[0]
+
+if __name__=='__main__':
+  j1 = Joueur('Ludovic')
+  print(j1)
+  ajouterTresor(j1, 1)
+  print(j1)
+  print(prochainTresor(j1))
+  ajouterTresor(j1, 2)
+  print(j1)
+  tresorTrouve(j1)
+  print(j1)
+  print(getNbTresorsRestants(j1))
+  ajouterTresor(j1,3)
+  print(getNbTresorsRestants(j1))
+  print(getNom(j1))
