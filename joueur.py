@@ -35,7 +35,7 @@ def prochainTresor(joueur):
     if joueur[1]==[]:
         return None
     else:
-        return joueur[1] 
+        return joueur[1][0]
         
 def tresorTrouve(joueur):
     """ 
@@ -66,13 +66,12 @@ if __name__=='__main__':
   j1 = Joueur('Ludovic')
   print(j1)
   ajouterTresor(j1, 1)
+  ajouterTresor(j1, 2)
   print(j1)
   print(prochainTresor(j1))
   ajouterTresor(j1, 2)
   print(j1)
   tresorTrouve(j1)
   print(j1)
-  print(getNbTresorsRestants(j1))
-  ajouterTresor(j1,3)
   print(getNbTresorsRestants(j1))
   print(getNom(j1))
