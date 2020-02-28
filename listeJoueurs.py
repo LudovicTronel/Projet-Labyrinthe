@@ -18,7 +18,12 @@ def ListeJoueurs(nomsJoueurs):
     paramètre: nomsJoueurs une liste de chaines de caractères
     résultat: la liste des joueurs avec un joueur courant mis à 0
     """
-    return nomsJoueurs
+    listejoueur = []
+    for elem in nomsJoueurs:
+      listejoueur.append(Joueur(elem))
+    global listenoms
+    listenoms = listejoueur
+    return listenoms
 
 def ajouterJoueur(joueurs, joueur):
     """
@@ -27,7 +32,8 @@ def ajouterJoueur(joueurs, joueur):
                 joueur le joueur à ajouter
     cette fonction ne retourne rien mais modifie la liste des joueurs
     """
-    joueurs.append(joueur)
+    
+    joueurs.append(Joueur(joueur))
 
 def initAleatoireJoueurCourant(joueurs):
     """
@@ -51,7 +57,14 @@ def distribuerTresors(joueurs,nbTresors=24, nbTresorMax=0):
                              de trésor possible  
     cette fonction ne retourne rien mais modifie la liste des joueurs
     """
-    pass
+    if nbTresorMax==0:
+      nbTresorMax = nbTresors
+    for j in range(len(joueurs)):
+      for k in range(nbTresorMax):
+          nombraleatoire = random.randint(1, nbTresors)
+          ajouterTresor(joueurs[j], nombraleatoire)
+    
+
 
 def changerJoueurCourant(joueurs):
     """
@@ -75,7 +88,7 @@ def getJoueurCourant(joueurs):
     paramètre: joueurs la liste des joueurs
     résultat: le joueur courant
     """
-    return joueurs[0]
+    return joueurs[0][0]
 
 def joueurCourantTrouveTresor(joueurs):
     """
@@ -147,11 +160,13 @@ def joueurCourantAFini(joueurs):
     pass
 
 if __name__=='__main__':
-  l = ['Ludovic', 'Océanne', 'Damien', 'Emerick']
-  print(ListeJoueurs(l))
-  ajouterJoueur(l, 'Hector')
-  print(l)
-  initAleatoireJoueurCourant(l)
-  print(l)
-  print(getNbJoueurs(l))
-  print(getJoueurCourant(l))
+  listenoms = ['Ludovic', 'Océanne', 'Damien', 'Emerick']
+  print(ListeJoueurs(listenoms))
+  ajouterJoueur(listenoms, 'Hector')
+  print(listenoms)
+  initAleatoireJoueurCourant(listenoms)
+  print(listenoms)
+  print(getNbJoueurs(listenoms))
+  print(getJoueurCourant(listenoms))
+  distribuerTresors(listenoms,24, 0)
+  print(listenoms)
