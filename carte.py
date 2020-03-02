@@ -183,7 +183,9 @@ def tourneAleatoire(c):
     paramètres: c une carte
     Cette fonction modifie la carte mais ne retourne rien    
     """
-    tour = random.randint(0, 3)
+    tour = random.randint(0, 4)
+    for i in range(tour):
+        tournerHoraire(c)
     
 def coderMurs(c):
     """
@@ -197,6 +199,21 @@ def coderMurs(c):
     paramètre c une carte
     retourne un entier indice du caractère semi-graphique de la carte
     """
+    bN = bE = bS = bO = 0
+    for i in range(len(c)):
+        if c['Nord'] == True:
+            bN = 1
+        if c['Est'] == True:
+            bE = 1
+        if c['Sud'] == True:
+            bS = 1
+        if c['Ouest'] == True:
+            bO = 1
+    code = (bO*1000)+(bS*100)+(bE*10)+bN
+    
+    return code
+    
+    
     pass
 
 def decoderMurs(c,code):
@@ -206,7 +223,22 @@ def decoderMurs(c,code):
                code un entier codant les murs d'une carte
     Cette fonction modifie la carte mais ne retourne rien
     """    
-    pass
+    unite = code %10
+    dizaine = ((code - unite) / 10) %10
+    centaine = ((code - unite - 10 * dizaine) / 100) %10
+    millier = ((code - unite - 10 * dizaine - 100 * centaine) / 1000)
+    c['Nord'] = c['Est'] = c['Sud'] = c['Ouest'] = False
+    for i in range(len(c)-2):
+        if unite == 1:
+            c['Nord'] = True
+        if dizaine == 1:
+            c['Est'] = True
+        if centaine == 1:
+            c['Sud'] = True
+        if millier == 1:
+            c['Ouest'] = True
+    return c
+    
 def toChar(c):
     """
     fournit le caractère semi graphique correspondant à la carte (voir la variable listeCartes au début de ce script)
@@ -221,7 +253,10 @@ def passageNord(carte1,carte2):
     paramètres carte1 et carte2 deux cartes
     résultat un booléen
     """
-    pass
+    if carte1['Nord'] == False and carte2['Sud'] == False:
+        return True
+    else: 
+        return  False
 
 def passageSud(carte1,carte2):
     """
@@ -230,8 +265,11 @@ def passageSud(carte1,carte2):
     paramètres carte1 et carte2 deux cartes
     résultat un booléen
     """
-    pass
-
+    if carte1['Sud'] == False and carte2['Nord'] == False:
+        return True
+    else: 
+        return  False
+    
 def passageOuest(carte1,carte2):
     """
     suppose que la carte2 est placée à l'ouest de la carte1 et indique
@@ -239,8 +277,11 @@ def passageOuest(carte1,carte2):
     paramètres carte1 et carte2 deux cartes
     résultat un booléen
     """
-    pass
-
+    if carte1['Ouest'] == False and carte2['Est'] == False:
+        return True
+    else: 
+        return  False
+        
 def passageEst(carte1,carte2):
     """
     suppose que la carte2 est placée à l'est de la carte1 et indique
@@ -248,10 +289,15 @@ def passageEst(carte1,carte2):
     paramètres carte1 et carte2 deux cartes
     résultat un booléen    
     """
-    pass
+    if carte1['Est'] == False and carte2['Ouest'] == False:
+        return True
+    else: 
+        return  False
 
 if __name__=='__main__':
-    c = Carte(False, True, False, False, 1)
+    c = Carte(False, True, True, False, 1)
+    c1 = Carte(False, False, True, False)
+    c2 = Carte(False, False, False, True)
     print('Paramètres de la carte:',c)
     print('La carte est-elle valide ?', estValide(c))
     print('La carte possède un mur au Nord ?', murNord(c))
@@ -274,3 +320,11 @@ if __name__=='__main__':
     print('Verification de la rotation horaite', c)
     tournerAntiHoraire(c)
     print('Verification de la rotation antihoraire', c)
+    tourneAleatoire(c)
+    print('Verification de la rotation aléatoire', c)
+    print('Passage au Nord possible: ',passageNord(c1, c2))
+    print('Passage à l Est possible: ',passageEst(c1, c2))
+    print('Passage au Sud possible: ',passageSud(c1, c2))
+    print('Passage à l Ouest possible: ',passageOuest(c1, c2))
+    print('Le code des murs de la carte est:', coderMurs(c))
+    print('La carte correspondant au code des murs est:', decoderMurs(c, 1101))
