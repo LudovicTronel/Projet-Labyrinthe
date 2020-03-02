@@ -31,42 +31,49 @@ def estValide(c):
     retourne un booléen indiquant si la carte est valide ou non c'est à dire qu'elle a zéro un ou deux murs
     paramètre: c une carte
     """
-    pass
-
+    mur = 0
+    for elem in c:
+        if c[elem] == True:
+            mur = mur+1
+    if mur<=2:
+        return True
+    else:
+        return False
+        
 def murNord(c):
     """
     retourne un booléen indiquant si la carte possède un mur au nord
     paramètre: c une carte
     """
-    pass
+    return c['Nord']
 
 def murSud(c):
     """
     retourne un booléen indiquant si la carte possède un mur au sud
     paramètre: c une carte
     """
-    pass
+    return c['Sud']
 
 def murEst(c):
     """
     retourne un booléen indiquant si la carte possède un mur à l'est
     paramètre: c une carte
     """
-    pass
+    return c['Est']
 
 def murOuest(c):
     """
     retourne un booléen indiquant si la carte possède un mur à l'ouest
     paramètre: c une carte
     """
-    pass
+    return c['Ouest']
 
 def getListePions(c):
     """
     retourne la liste des pions se trouvant sur la carte
     paramètre: c une carte
     """
-    pass
+    return c['Pions']
 
 def setListePions(c,listePions):
     """
@@ -75,14 +82,14 @@ def setListePions(c,listePions):
                 listePions: la liste des pions à poser
     Cette fonction ne retourne rien mais modifie la carte
     """
-    pass
+    c['Pions'] = listePions
 
 def getNbPions(c):
     """
     retourne le nombre de pions se trouvant sur la carte
     paramètre: c une carte
     """
-    pass
+    return len(c['Pions'])
 
 def possedePion(c,pion):
     """
@@ -90,7 +97,10 @@ def possedePion(c,pion):
     paramètres: c une carte
                 pion un entier compris entre 1 et 4
     """
-    pass
+    if pion in c['Pions']:
+        return True
+    else:
+        return False
 
 
 def getTresor(c):
@@ -98,7 +108,7 @@ def getTresor(c):
     retourne la valeur du trésor qui se trouve sur la carte (0 si pas de trésor)
     paramètre: c une carte
     """
-    pass
+    return c['Tresor']
 
 def prendreTresor(c):
     """
@@ -106,7 +116,10 @@ def prendreTresor(c):
     paramètre: c une carte
     résultat l'entier représentant le trésor qui était sur la carte
     """
-    pass
+    tres = c['Tresor']
+    c['Tresor'] = 0
+    return tres
+
 def mettreTresor(c,tresor):
     """
     met le trésor passé en paramètre sur la carte et retourne la valeur de l'ancien trésor
@@ -114,7 +127,9 @@ def mettreTresor(c,tresor):
                 tresor un entier positif
     résultat l'entier représentant le trésor qui était sur la carte
     """
-    pass
+    tres = c['Tresor']
+    c['Tresor'] = tresor
+    return tres
 
 def prendrePion(c, pion):
     """
@@ -123,7 +138,10 @@ def prendrePion(c, pion):
                 pion un entier compris entre 1 et 4
     Cette fonction modifie la carte mais ne retourne rien
     """
-    pass
+    for i in range(len(c['Pions'])):
+        if c['Pions'][i-1] == pion:
+            del c['Pions'][i-1]
+    
 
 def poserPion(c, pion):
     """
@@ -132,15 +150,20 @@ def poserPion(c, pion):
                 pion un entier compris entre 1 et 4
     Cette fonction modifie la carte mais ne retourne rien
     """
-    pass
-
+    if pion not in c['Pions']:
+        c['Pions'].append(pion)
+        
 def tournerHoraire(c):
     """
     fait tourner la carte dans le sens horaire
     paramètres: c une carte
     Cette fonction modifie la carte mais ne retourne rien    
     """
-    pass
+    a = c['Nord']
+    c['Nord'] = c['Ouest']
+    c['Ouest'] = c['Sud']
+    c['Sud'] = c['Est']
+    c['Est'] = a
 
 def tournerAntiHoraire(c):
     """
@@ -148,15 +171,20 @@ def tournerAntiHoraire(c):
     paramètres: c une carte
     Cette fonction modifie la carte mais ne retourne rien    
     """
-    pass
+    a = c['Nord']
+    c['Nord'] = c['Est']
+    c['Est'] = c['Sud']
+    c['Sud'] = c['Ouest']
+    c['Ouest'] = a
+    
 def tourneAleatoire(c):
     """
     faire tourner la carte d'un nombre de tours aléatoire
     paramètres: c une carte
     Cette fonction modifie la carte mais ne retourne rien    
     """
-    pass
-
+    tour = random.randint(0, 3)
+    
 def coderMurs(c):
     """
     code les murs sous la forme d'un entier dont le codage binaire 
@@ -223,3 +251,26 @@ def passageEst(carte1,carte2):
     pass
 
 if __name__=='__main__':
+    c = Carte(False, True, False, False, 1)
+    print('Paramètres de la carte:',c)
+    print('La carte est-elle valide ?', estValide(c))
+    print('La carte possède un mur au Nord ?', murNord(c))
+    print('La carte possède un mur au Est ?', murEst(c))
+    print('La carte possède un mur au Sud ?', murSud(c))
+    print('La carte possède un mur au Ouest ?', murOuest(c))
+    print('La liste des pions sur la carte est: ',getListePions(c))
+    print('La carte contient ', getNbPions(c), ' pion(s)')
+    setListePions(c, [1,3])
+    print('Nouveaux paramètres de la carte: ',c)
+    print('La carte contient-elle le pion demandé ?', possedePion(c,2))
+    print('La carte renferme le trésor n° ', getTresor(c))
+    print('Le tresor n°', prendreTresor(c),' va être enlevé')
+    print('L ancien trésor était le n°', mettreTresor(c, 1))
+    prendrePion(c, 1)
+    print('Verfication de la suppresion du pion', c)
+    poserPion(c, 2)
+    print('Verification de l ajout du pion', c)
+    tournerHoraire(c)
+    print('Verification de la rotation horaite', c)
+    tournerAntiHoraire(c)
+    print('Verification de la rotation antihoraire', c)
