@@ -22,7 +22,7 @@ def ajouterTresor(joueur,tresor):
         joueur le joueur à modifier
         tresor un entier strictement positif
     la fonction ne retourne rien mais modifie le joueur"""
-    if tresor not in joueur:
+    if tresor not in joueur[1]:
         joueur[1].append(tresor)
         
 def prochainTresor(joueur):
@@ -64,14 +64,14 @@ def getNom(joueur):
 
 if __name__=='__main__':
   j1 = Joueur('Ludovic')
-  print(j1)
+  print('Nouveau Joueur:',j1)
   ajouterTresor(j1, 1)
+  print('Ajout d un premier trésor:', j1)
   ajouterTresor(j1, 2)
-  print(j1)
-  print(prochainTresor(j1))
-  ajouterTresor(j1, 2)
-  print(j1)
+  print('Ajout d un deuxieme trésor:',j1)
+  print('Le prochain trésor à trouver porte le n°', prochainTresor(j1))
+  print('Liste des trésors avant découverte:',j1)
   tresorTrouve(j1)
-  print(j1)
-  print(getNbTresorsRestants(j1))
-  print(getNom(j1))
+  print('Liste des trésors après découverte:',j1)
+  print('Il reste',getNbTresorsRestants(j1), 'trésor à trouver')
+  print('Le joueur est',getNom(j1))

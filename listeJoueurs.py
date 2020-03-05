@@ -18,12 +18,9 @@ def ListeJoueurs(nomsJoueurs):
     paramètre: nomsJoueurs une liste de chaines de caractères
     résultat: la liste des joueurs avec un joueur courant mis à 0
     """
-    listejoueur = []
-    for elem in nomsJoueurs:
-      listejoueur.append(Joueur(elem))
-    global listenoms
-    listenoms = listejoueur
-    return listenoms
+    for i in range(len(nomsJoueurs)):
+      nomsJoueurs[i] = Joueur(nomsJoueurs[i])
+    return nomsJoueurs
 
 def ajouterJoueur(joueurs, joueur):
     """
@@ -160,23 +157,22 @@ def joueurCourantAFini(joueurs):
 
 if __name__=='__main__':
   listenoms = ['Ludovic', 'Océanne', 'Damien', 'Emerick']
-  print(ListeJoueurs(listenoms))
+  print('Liste des joueurs:',ListeJoueurs(listenoms))
   ajouterJoueur(listenoms, 'Hector')
-  print(listenoms)
-  print(joueurCourantAFini(listenoms))
+  print('Ajout d un joueur:',listenoms)
   initAleatoireJoueurCourant(listenoms)
-  print(listenoms)
+  print('Changement de joueur courant:',listenoms)
   distribuerTresors(listenoms,24, 3)
-  print(listenoms)
+  print('Distribution des trésors:',listenoms)
   changerJoueurCourant(listenoms)
-  print(listenoms)
-  print(getNbJoueurs(listenoms))
-  print(getJoueurCourant(listenoms))
-  print(nomJoueurCourant(listenoms))
-  print(joueurCourantAFini(listenoms))
+  print('Joueur courant suivant:',listenoms)
+  print('Il y a',getNbJoueurs(listenoms),'joueurs dans la partie')
+  print('Le joueur courant est',getJoueurCourant(listenoms))
+  print('Le joueur courant s appelle',nomJoueurCourant(listenoms))
+  print('Le joueur courant a-t-il finit ?',joueurCourantAFini(listenoms))
   joueurCourantTrouveTresor(listenoms)
-  print(listenoms)
-  print(nbTresorsRestantsJoueur(listenoms,0))
-  print(nomJoueur(listenoms, 0))
-  print(prochainTresorJoueur(listenoms,1))
-  print(tresorCourant(listenoms))
+  print('Le joueur courant a trouvé un trésor:',listenoms)
+  print('Il reste',nbTresorsRestantsJoueur(listenoms,0),'trésor(s) à trouver au joueur courant')
+  print('Le joueur s appelle',nomJoueur(listenoms, 0))
+  print('Le prochain trésor à trouver du joueur porte le n°',prochainTresorJoueur(listenoms,1))
+  print('Le prochain trésor à trouver du joueur courant porte le n°', tresorCourant(listenoms))

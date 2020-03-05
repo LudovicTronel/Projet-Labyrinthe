@@ -32,9 +32,14 @@ def estValide(c):
     paramètre: c une carte
     """
     mur = 0
-    for elem in c:
-        if c[elem] == True:
-            mur = mur+1
+    if c['Nord'] == True:
+        mur = mur+1
+    if c['Est'] == True:
+        mur = mur+1
+    if c['Sud'] == True:
+        mur = mur+1
+    if c['Ouest'] == True:
+        mur = mur+1
     if mur<=2:
         return True
     else:
@@ -139,8 +144,9 @@ def prendrePion(c, pion):
     Cette fonction modifie la carte mais ne retourne rien
     """
     for i in range(len(c['Pions'])):
-        if c['Pions'][i-1] == pion:
-            del c['Pions'][i-1]
+        if c['Pions'][i] == pion:
+            indice = i
+    del c['Pions'][indice]
     
 
 def poserPion(c, pion):
@@ -313,7 +319,7 @@ if __name__=='__main__':
     print('Le tresor n°', prendreTresor(c),' va être enlevé')
     print('L ancien trésor était le n°', mettreTresor(c, 1))
     prendrePion(c, 1)
-    print('Verfication de la suppresion du pion', c)
+    print('Verification de la suppresion du pion', c)
     poserPion(c, 2)
     print('Verification de l ajout du pion', c)
     tournerHoraire(c)
