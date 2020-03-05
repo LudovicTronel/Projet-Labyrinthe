@@ -26,14 +26,15 @@ def getNbLignes(matrice):
     retourne le nombre de lignes de la matrice
     paramètre: matrice la matrice considérée
     """
-    pass
+    return nbLignes
+    
 
 def getNbColonnes(matrice):
     """
     retourne le nombre de colonnes de la matrice
     paramètre: matrice la matrice considérée
     """
-    pass
+    return nbColonnes
 
 def getVal(matrice,ligne,colonne):
     """
@@ -42,7 +43,9 @@ def getVal(matrice,ligne,colonne):
                 ligne le numéro de la ligne (en commençant par 0)
                 colonne le numéro de la colonne (en commençant par 0)
     """
-    pass
+    for ligne>=0 in matrice:
+        for colonne>=0 in ligne:
+            return valeur(nbLignes,nbColonnes)
 
 def setVal(matrice,ligne,colonne,valeur):
     """
@@ -53,7 +56,9 @@ def setVal(matrice,ligne,colonne,valeur):
                 valeur la valeur à stocker dans la matrice
     cette fonction ne retourne rien mais modifie la matrice
     """
-    pass
+   
+    
+   
 
 
 #------------------------------------------        
@@ -69,7 +74,10 @@ def decalageLigneAGauche(matrice, numLig, nouvelleValeur=0):
                  nouvelleValeur la valeur à placer
     résultat la valeur qui a été ejectée lors du décalage
     """
-    pass
+    numLig=[]
+    M=Matrice 
+    numLig.append(M[-1])
+    return nouvelleValeur
 
 def decalageLigneADroite(matrice, numLig, nouvelleValeur=0):
     """
