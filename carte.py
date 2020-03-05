@@ -215,12 +215,7 @@ def coderMurs(c):
             bS = 1
         if c['Ouest'] == True:
             bO = 1
-    code = (bO*1000)+(bS*100)+(bE*10)+bN
-    
-    return code
-    
-    
-    pass
+    return int((bN*2**0)+(bE*2**1)+(bS*2**2)+(bO*2**3))
 
 def decoderMurs(c,code):
     """
@@ -243,15 +238,14 @@ def decoderMurs(c,code):
             c['Sud'] = True
         if millier == 1:
             c['Ouest'] = True
-    return c
     
 def toChar(c):
     """
     fournit le caractère semi graphique correspondant à la carte (voir la variable listeCartes au début de ce script)
     paramètres c une carte
     """
-    pass
-
+    return listeCartes[coderMurs(c)]
+    
 def passageNord(carte1,carte2):
     """
     suppose que la carte2 est placée au nord de la carte1 et indique
@@ -328,9 +322,11 @@ if __name__=='__main__':
     print('Verification de la rotation antihoraire', c)
     tourneAleatoire(c)
     print('Verification de la rotation aléatoire', c)
+    print('Verification du code des murs de la carte est:', coderMurs(c))
+    decoderMurs(c, 1000)
+    print('Verification pour le decodage des murs:', c) 
+    print('Le caractère semi-graphique de la carte est:',toChar(c))
     print('Passage au Nord possible: ',passageNord(c1, c2))
     print('Passage à l Est possible: ',passageEst(c1, c2))
     print('Passage au Sud possible: ',passageSud(c1, c2))
     print('Passage à l Ouest possible: ',passageOuest(c1, c2))
-    print('Le code des murs de la carte est:', coderMurs(c))
-    print('La carte correspondant au code des murs est:', decoderMurs(c, 1101))
