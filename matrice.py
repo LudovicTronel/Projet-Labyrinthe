@@ -56,7 +56,9 @@ def setVal(matrice,ligne,colonne,valeur):
                 valeur la valeur à stocker dans la matrice
     cette fonction ne retourne rien mais modifie la matrice
     """
-   
+   for valeur in (ligne,colonne):
+    print(valeur)
+    
     
    
 
@@ -88,7 +90,12 @@ def decalageLigneADroite(matrice, numLig, nouvelleValeur=0):
                  nouvelleValeur la valeur à placer
     résultat: la valeur de la case "ejectée" par le décalage
     """
-    pass
+    
+    numLig=[]
+    M=matrice
+    numLig.append(M[+1])
+    return nouvelleValeur
+
 def decalageColonneEnHaut(matrice, numCol, nouvelleValeur=0):
     """
     decale la colonne numCol d'une case vers le haut en insérant une nouvelle
@@ -98,7 +105,11 @@ def decalageColonneEnHaut(matrice, numCol, nouvelleValeur=0):
                  nouvelleValeur la valeur à placer
     résultat: la valeur de la case "ejectée" par le décalage
     """
-    pass
+   
+    numCol=[]
+    M=matrice
+    numCol.append(M[-1])
+    return nouvelleValeur
 
 def decalageColonneEnBas(matrice, numCol, nouvelleValeur=0):
     """
@@ -109,7 +120,12 @@ def decalageColonneEnBas(matrice, numCol, nouvelleValeur=0):
                  nouvelleValeur la valeur à placer
     résultat: la valeur de la case "ejectée" par le décalage
     """
-    pass
+    numCol=[]
+    M=matrice
+    numCol.append(M[+1])
+    return nouvelleValeur
+            
+    
 
 if __name__=='__main__':
    Matrice(10,10)
