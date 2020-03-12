@@ -39,9 +39,9 @@ def creerCartesAmovibles(tresorDebut,nbTresors):
 
 def prendreTresorPlateau(plateau,lig,col,numTresor):
     """
-    prend le tresor numTresor qui se trouve sur la carte en lin,col du plateau
+    prend le tresor numTresor qui se trouve sur la carte en lig,col du plateau
     retourne True si l'opération s'est bien passée (le trésor était vraiment sur
-    la carte
+    la carte)
     paramètres: plateau: le plateau considéré
                 lig: la ligne où se trouve la carte
                 col: la colonne où se trouve la carte
@@ -70,27 +70,27 @@ def getCoordonneesJoueur(plateau,numJoueur):
     """
     pass
 
-def prendrePionPlateau(plateau,lin,col,numJoueur):
+def prendrePionPlateau(plateau,lig,col,numJoueur):
     """
     prend le pion du joueur sur la carte qui se trouve en (lig,col) du plateau
     paramètres: plateau:le plateau considéré
-                lin: numéro de la ligne où se trouve le pion
-                col: numéro de la colonne où se trouve le pion
-                numJoueur: le numéro du joueur qui correspond au pion
-    Cette fonction ne retourne rien mais elle modifie le plateau
-    """
-    pass
-def poserPionPlateau(plateau,lin,col,numJoueur):
-    """
-    met le pion du joueur sur la carte qui se trouve en (lig,col) du plateau
-    paramètres: plateau:le plateau considéré
-                lin: numéro de la ligne où se trouve le pion
+                lig: numéro de la ligne où se trouve le pion
                 col: numéro de la colonne où se trouve le pion
                 numJoueur: le numéro du joueur qui correspond au pion
     Cette fonction ne retourne rien mais elle modifie le plateau
     """
     pass
 
+def poserPionPlateau(plateau,lig,col,numJoueur):
+    """
+    met le pion du joueur sur la carte qui se trouve en (lig,col) du plateau
+    paramètres: plateau:le plateau considéré
+                lig: numéro de la ligne où se trouve le pion
+                col: numéro de la colonne où se trouve le pion
+                numJoueur: le numéro du joueur qui correspond au pion
+    Cette fonction ne retourne rien mais elle modifie le plateau
+    """
+    pass
 
 def accessible(plateau,ligD,colD,ligA,colA):
     """
@@ -119,7 +119,4 @@ def accessibleDist(plateau,ligD,colD,ligA,colA):
     résultat: une liste de coordonées indiquant un chemin possible entre la case
               de départ et la case d'arrivée
     """
-    pass
-
-if __name__=='__main__':
-  
+    pass  

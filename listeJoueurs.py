@@ -57,9 +57,9 @@ def distribuerTresors(joueurs,nbTresors=24, nbTresorMax=0):
     if nbTresorMax==0:
       nbTresorMax = nbTresors
     for j in range(len(joueurs)):
-      for k in range(nbTresorMax):
-          nombraleatoire = random.randint(1, nbTresors)
-          ajouterTresor(joueurs[j], nombraleatoire)
+      while len(joueurs[j][1]) != nbTresorMax:
+        nombraleatoire = random.randint(0, nbTresors)
+        ajouterTresor(joueurs[j], nombraleatoire)
     
 def changerJoueurCourant(joueurs):
     """
@@ -111,7 +111,7 @@ def numJoueurCourant(joueurs):
     paramètre: joueurs la liste des joueurs
     résultat: le numéro du joueur courant
     """
-    pass
+    return 0
 
 def nomJoueurCourant(joueurs):
     """
@@ -119,7 +119,7 @@ def nomJoueurCourant(joueurs):
     paramètre: joueurs la liste des joueurs
     résultat: le nom du joueur courant
     """
-    return joueurs[0][0]
+    return getNom(joueurs[0])
 
 def nomJoueur(joueurs,numJoueur):
     """
@@ -128,7 +128,7 @@ def nomJoueur(joueurs,numJoueur):
                 numJoueur le numéro du joueur    
     résultat: le nom du joueur numJoueur
     """
-    return joueurs[numJoueur][0]
+    return getNom(joueurs[numJoueur])
 
 def prochainTresorJoueur(joueurs,numJoueur):
     """
@@ -162,7 +162,7 @@ if __name__=='__main__':
   print('Ajout d un joueur:',listenoms)
   initAleatoireJoueurCourant(listenoms)
   print('Changement de joueur courant:',listenoms)
-  distribuerTresors(listenoms,24, 3)
+  distribuerTresors(listenoms,12, 0)
   print('Distribution des trésors:',listenoms)
   changerJoueurCourant(listenoms)
   print('Joueur courant suivant:',listenoms)
@@ -173,6 +173,6 @@ if __name__=='__main__':
   joueurCourantTrouveTresor(listenoms)
   print('Le joueur courant a trouvé un trésor:',listenoms)
   print('Il reste',nbTresorsRestantsJoueur(listenoms,0),'trésor(s) à trouver au joueur courant')
-  print('Le joueur s appelle',nomJoueur(listenoms, 0))
+  print('Le joueur s appelle',nomJoueur(listenoms, 1))
   print('Le prochain trésor à trouver du joueur porte le n°',prochainTresorJoueur(listenoms,1))
   print('Le prochain trésor à trouver du joueur courant porte le n°', tresorCourant(listenoms))

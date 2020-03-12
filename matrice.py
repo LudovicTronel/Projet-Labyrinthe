@@ -43,9 +43,9 @@ def getVal(matrice,ligne,colonne):
                 ligne le numéro de la ligne (en commençant par 0)
                 colonne le numéro de la colonne (en commençant par 0)
     """
-    for ligne>=0 in matrice:
-        for colonne>=0 in ligne:
-            return valeur(nbLignes,nbColonnes)
+    for ligne in matrice:
+      for colonne in ligne:
+          return valeur(nbLignes,nbColonnes)
 
 def setVal(matrice,ligne,colonne,valeur):
     """
@@ -56,8 +56,8 @@ def setVal(matrice,ligne,colonne,valeur):
                 valeur la valeur à stocker dans la matrice
     cette fonction ne retourne rien mais modifie la matrice
     """
-   for valeur in (ligne,colonne):
-    print(valeur)
+    for valeur in (ligne,colonne):
+      print(valeur)
     
     
    
@@ -124,8 +124,3 @@ def decalageColonneEnBas(matrice, numCol, nouvelleValeur=0):
     M=matrice
     numCol.append(M[+1])
     return nouvelleValeur
-            
-    
-
-if __name__=='__main__':
-   Matrice(10,10)
