@@ -25,10 +25,10 @@ def Labyrinthe(nomsJoueurs=["joueur1","joueurs2"],nbTresors=24, nbTresorsMax=0):
                 nbTresorMax le nombre de trésors maximum distribué à chaque joueur
     résultat: le labyrinthe crée
     """
-    ListeJoueurs(nomsJoueurs)
-    initAleatoireJoueurCourant(nomsJoueurs)
-    distribuerTresors(nomsJoueurs, nbTresors, nbTresorsMax)
-    return nomsJoueurs
+    lab = {'nbJoueurs': getNbJoueurs(nomsJoueurs), 'nbTresors': nbTresors, 'nbTresorsMax': nbTresorsMax, 'Joueurs': ListeJoueurs(nomsJoueurs), 'Plateau': Plateau(len(nomsJoueurs), nbTresors), 'Phase': 1}
+    initAleatoireJoueurCourant(lab['Joueurs'])
+    distribuerTresors(lab['Joueurs'],nbTresors, nbTresorsMax)
+    return lab
 
 def getPlateau(labyrinthe):
     """
@@ -36,7 +36,7 @@ def getPlateau(labyrinthe):
     paramètre: labyrinthe le labyrinthe considéré
     résultat: la matrice représentant le plateau de ce labyrinthe
     """
-    return Plateau(labyrinthe)
+    return lab['Plateau']
 
 def getNbParticipants(labyrinthe):
     """
@@ -44,7 +44,7 @@ def getNbParticipants(labyrinthe):
     paramètre: labyrinthe le labyrinthe considéré
     résultat: le nombre de joueurs de la partie
     """
-    return getNbJoueurs(labyrinthe)
+    return lab['nbJoueurs']
 
 def getNomJoueurCourant(labyrinthe):
     """
@@ -52,7 +52,7 @@ def getNomJoueurCourant(labyrinthe):
     paramètre: labyrinthe le labyrinthe considéré
     résultat: le nom du joueurs courant
     """
-    return nomJoueurCourant(labyrinthe)
+    return nomJoueurCourant(lab['Joueurs'])
 
 def getNumJoueurCourant(labyrinthe):
     """
@@ -60,7 +60,7 @@ def getNumJoueurCourant(labyrinthe):
     paramètre: labyrinthe le labyrinthe considéré
     résultat: le numero du joueurs courant
     """
-    return numJoueurCourant(labyrinthe)
+    return numJoueurCourant(lab['Joueurs'])
 
 def getPhase(labyrinthe):
     """
@@ -68,7 +68,7 @@ def getPhase(labyrinthe):
     paramètre: labyrinthe le labyrinthe considéré
     résultat: le numéro de la phase de jeu courante
     """   
-    pass
+    return lab['Phase']
 
 
 def changerPhase(labyrinthe):
@@ -77,7 +77,7 @@ def changerPhase(labyrinthe):
     paramètre: labyrinthe le labyrinthe considéré
     la fonction ne retourne rien mais modifie le labyrinthe
     """    
-    pass
+    lab['Phase']+=1
 
 
 def getNbTresors(labyrinthe):
@@ -86,10 +86,7 @@ def getNbTresors(labyrinthe):
     paramètre: labyrinthe le labyrinthe considéré
     résultat: le nombre de trésors sur le plateau
     """    
-    nbTresor = 0
-    for i in range(len(labyrinthe)):
-      nbTresor = nbTresor + nbTresorsRestantsJoueur(labyrinthe,i)
-    return nbTresor 
+    return lab['nbTresors']
     
 
 def getListeJoueurs(labyrinthe):
@@ -98,10 +95,10 @@ def getListeJoueurs(labyrinthe):
     paramètre: labyrinthe le labyrinthe considéré
     résultat: les joueurs sous la forme de la structure implémentée dans listeJoueurs.py    
     """
-    pass
+    return lab['Joueurs']
 
 
-def enleverTresor(labyrinthe,lin,col,numTresor):
+def enleverTresor(labyrinthe,lig,col,numTresor):
     """
     enleve le trésor numTresor du plateau du labyrinthe. 
     Si l'opération s'est bien passée le nombre total de trésors dans le labyrinthe
@@ -112,7 +109,8 @@ def enleverTresor(labyrinthe,lin,col,numTresor):
                 numTresor: le numéro du trésor à prendre sur la carte
     la fonction ne retourne rien mais modifie le labyrinthe
     """
-    pass
+    prendreTresorPlateau(lab['Plateau'],lig,col,numTresor)
+    
 
 def prendreJoueurCourant(labyrinthe,lin,col):
     """
@@ -125,6 +123,8 @@ def prendreJoueurCourant(labyrinthe,lin,col):
     """
     pass
 
+
+
 def poserJoueurCourant(labyrinthe,lig,col):
     """
     pose le joueur courant sur la case lin,col du plateau
@@ -133,7 +133,7 @@ def poserJoueurCourant(labyrinthe,lig,col):
                 col: la colonne où se trouve la carte
     la fonction ne retourne rien mais modifie le labyrinthe     
     """
-    return poserPionPlateau(Plateau(labyrinthe,getNbTresors(labyrinthe)),lig, col, 0)
+    pass
 
 def getCarteAJouer(labyrinthe):
     """
@@ -250,10 +250,15 @@ def finirTour(labyrinthe):
 
 if __name__=='__main__':
   lab = Labyrinthe(nomsJoueurs=["Ludovic","Océanne"],nbTresors=6, nbTresorsMax=0)
-  print('L initialisation du Labyrinthe est:',lab)
-  """print('Le plateau est:',getPlateau(lab))"""
-  print('Il y a ',getNbParticipants(lab),' joueur(s) dans la partie')
-  print('Le joueur courant est:', getNomJoueurCourant(lab))
-  print('Le numéro du joueur courant est:', getNumJoueurCourant(lab))
-  print('Il reste ',getNbTresors(lab),' trésor(s) sur le labyrinthe')
-  poserJoueurCourant(lab,2,3)
+  print('L initialisation du labyrinthe est:',lab)
+  print('Le plateau du labyrinthe est:',getPlateau(lab))
+  print('Il y a',getNbParticipants(lab),'participant(s) dans la partie.')
+  print('Le joueur courant est:',getNomJoueurCourant(lab))
+  print('Le numéro du joueur courant est:',getNumJoueurCourant(lab))
+  print('La phase',getPhase(lab), 'est en cours.')
+  changerPhase(lab)
+  print('Verification du changement de phase, la phase', getPhase(lab), 'est désormais engagée.')
+  print('Il reste',getNbTresors(lab), 'trésor(s) dans le labyrinthe.')
+  print('La liste des joueurs est:', getListeJoueurs(lab))
+  enleverTresor(lab,4,21,3)
+  print('Verification de la suppression du trésor:', getPlateau(lab))

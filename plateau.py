@@ -103,7 +103,7 @@ def accessible(plateau,ligD,colD,ligA,colA):
     résultat: un boolean indiquant s'il existe un chemin entre la case de départ
               et la case d'arrivée
     """
-    pass
+    "Essayer avec la récursivité"
 
 def accessibleDist(plateau,ligD,colD,ligA,colA):
     """
