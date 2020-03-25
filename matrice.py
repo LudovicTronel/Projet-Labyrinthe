@@ -26,7 +26,16 @@ def getNbLignes(matrice):
     retourne le nombre de lignes de la matrice
     paramètre: matrice la matrice considérée
     """
-    return nbLignes
+    ligne=()
+    nbLignes=()
+    i=0
+        for i in range(ligne):
+            while i<len(liste):
+                i=i+1
+                if i==len(ligne):
+                    nbLignes.append(1)
+            return nbLignes
+        return nbLignes
     
 
 def getNbColonnes(matrice):
@@ -34,6 +43,16 @@ def getNbColonnes(matrice):
     retourne le nombre de colonnes de la matrice
     paramètre: matrice la matrice considérée
     """
+    colonne=()
+    nbColonnes=()
+    i=0
+        for i in range(colonne):
+            while i<len(colonne):
+                i=i+1
+                if i==len(colonne):
+                    nbColonnes.append(1)
+            return nbColonnes
+        return nbColonnes
     return nbColonnes
 
 def getVal(matrice,ligne,colonne):
@@ -124,3 +143,10 @@ def decalageColonneEnBas(matrice, numCol, nouvelleValeur=0):
     M=matrice
     numCol.append(M[+1])
     return nouvelleValeur
+
+
+"""if __name__=='__main__':
+
+    m=Matrice(10,8,0)
+    print('verification créatison matrice:', Matrice(10,8,0))
+    print(' verif retourne nombre de ligne exact:', getNbLignes(Matrice))"""
