@@ -62,11 +62,13 @@ def getVal(matrice,ligne,colonne):
                 ligne le numéro de la ligne (en commençant par 0)
                 colonne le numéro de la colonne (en commençant par 0)
     """
+    val=""
     for ligne in matrice:
-      for colonne in ligne:
-          return valeur(nbLignes,nbColonnes)
+      for collonne in ligne:
+          for val in colonne:
+            return val
 
-def setVal(matrice,ligne,colonne,valeur):
+def setVal(matrice,ligne,colonne,val):
     """
     met la valeur dans la case se trouve en (ligne,colonne) de la matrice
     paramètres: matrice la matrice considérée
@@ -75,8 +77,9 @@ def setVal(matrice,ligne,colonne,valeur):
                 valeur la valeur à stocker dans la matrice
     cette fonction ne retourne rien mais modifie la matrice
     """
-    for valeur in (ligne,colonne):
-      print(valeur)
+    val=""
+    for ligne in colonne:
+        matrice.append(val) 
     
     
    
@@ -97,7 +100,8 @@ def decalageLigneAGauche(matrice, numLig, nouvelleValeur=0):
     """
     numLig=[]
     M=Matrice 
-    numLig.append(M[-1])
+    for i in range(numLig):
+        numLig.append(M[-1])
     return nouvelleValeur
 
 def decalageLigneADroite(matrice, numLig, nouvelleValeur=0):
@@ -112,7 +116,8 @@ def decalageLigneADroite(matrice, numLig, nouvelleValeur=0):
     
     numLig=[]
     M=matrice
-    numLig.append(M[+1])
+    for i in range(numLig):
+        numLig.append(M[+1])
     return nouvelleValeur
 
 def decalageColonneEnHaut(matrice, numCol, nouvelleValeur=0):
@@ -127,7 +132,8 @@ def decalageColonneEnHaut(matrice, numCol, nouvelleValeur=0):
    
     numCol=[]
     M=matrice
-    numCol.append(M[-1])
+    for i in range(numCol):
+        numCol.append(M[-1])
     return nouvelleValeur
 
 def decalageColonneEnBas(matrice, numCol, nouvelleValeur=0):
@@ -141,7 +147,8 @@ def decalageColonneEnBas(matrice, numCol, nouvelleValeur=0):
     """
     numCol=[]
     M=matrice
-    numCol.append(M[+1])
+    for i in range(numCol):
+        numCol.append(M[+1])
     return nouvelleValeur
 
 
