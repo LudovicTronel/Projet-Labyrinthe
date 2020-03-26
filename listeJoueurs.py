@@ -18,9 +18,10 @@ def ListeJoueurs(nomsJoueurs):
     paramètre: nomsJoueurs une liste de chaines de caractères
     résultat: la liste des joueurs avec un joueur courant mis à 0
     """
+    liste = {'Joueurs': nomsJoueurs, 'JoueurCourant': 0}
     for i in range(len(nomsJoueurs)):
       nomsJoueurs[i] = Joueur(nomsJoueurs[i])
-    return nomsJoueurs
+    return liste
 
 def ajouterJoueur(joueurs, joueur):
     """
@@ -30,7 +31,7 @@ def ajouterJoueur(joueurs, joueur):
     cette fonction ne retourne rien mais modifie la liste des joueurs
     """
     
-    joueurs.append(Joueur(joueur))
+    joueurs['Joueurs'].append(joueur)
 
 def initAleatoireJoueurCourant(joueurs):
     """
@@ -38,9 +39,7 @@ def initAleatoireJoueurCourant(joueurs):
     paramètre: joueurs un liste de joueurs
     cette fonction ne retourne rien mais modifie la liste des joueurs
     """
-    a = random.randint(0, len(joueurs))
-    joueurs.insert(0, joueurs[a-1])
-    del joueurs[a]
+    joueurs['JoueurCourant'] = random.randint(0, len(joueurs['Joueurs'])-1)
 
 def distribuerTresors(joueurs,nbTresors=24, nbTresorMax=0):
     """
@@ -56,10 +55,10 @@ def distribuerTresors(joueurs,nbTresors=24, nbTresorMax=0):
     """
     if nbTresorMax==0:
       nbTresorMax = nbTresors
-    for j in range(len(joueurs)):
-      while len(joueurs[j][1]) != nbTresorMax:
-        nombraleatoire = random.randint(0, nbTresors)
-        ajouterTresor(joueurs[j], nombraleatoire)
+    for j in range(len(joueurs['Joueurs'])):
+      while len(joueurs['Joueurs'][j][1]) != nbTresorMax:
+        nombraleatoire = random.randint(1, nbTresors)
+        ajouterTresor(joueurs['Joueurs'][j], nombraleatoire)
     
 def changerJoueurCourant(joueurs):
     """
@@ -67,8 +66,10 @@ def changerJoueurCourant(joueurs):
     paramètres: joueurs la liste des joueurs
     cette fonction ne retourne rien mais modifie la liste des joueurs
     """   
-    joueurs.append(joueurs[0])
-    del joueurs[0]
+    
+    joueurs['JoueurCourant'] += 1
+    if joueurs['JoueurCourant'] == len(joueurs['Joueurs']):
+      joueurs['JoueurCourant'] = 0
 
 def getNbJoueurs(joueurs):
     """
@@ -76,7 +77,7 @@ def getNbJoueurs(joueurs):
     paramètre: joueurs la liste des joueurs
     résultat: le nombre de joueurs de la partie
     """
-    return len(joueurs)
+    return len(joueurs['Joueurs'])
 
 def getJoueurCourant(joueurs):
     """
@@ -84,7 +85,7 @@ def getJoueurCourant(joueurs):
     paramètre: joueurs la liste des joueurs
     résultat: le joueur courant
     """
-    return joueurs[0]
+    return joueurs['Joueurs'][joueurs['JoueurCourant']]
 
 def joueurCourantTrouveTresor(joueurs):
     """
@@ -93,7 +94,7 @@ def joueurCourantTrouveTresor(joueurs):
     paramètre: joueurs la liste des joueurs
     cette fonction ne retourne rien mais modifie la liste des joueurs
     """
-    tresorTrouve(joueurs[0])
+    tresorTrouve(getJoueurCourant(joueurs)) 
 
 def nbTresorsRestantsJoueur(joueurs,numJoueur):
     """
@@ -103,7 +104,7 @@ def nbTresorsRestantsJoueur(joueurs,numJoueur):
                 numJoueur le numéro du joueur
     résultat: le nombre de trésors que joueur numJoueur doit encore trouver
     """
-    return len(joueurs[numJoueur][1])
+    return len(joueurs['Joueurs'][numJoueur][1])
 
 def numJoueurCourant(joueurs):
     """
@@ -111,7 +112,7 @@ def numJoueurCourant(joueurs):
     paramètre: joueurs la liste des joueurs
     résultat: le numéro du joueur courant
     """
-    return 0
+    return joueurs['JoueurCourant']
 
 def nomJoueurCourant(joueurs):
     """
@@ -119,7 +120,7 @@ def nomJoueurCourant(joueurs):
     paramètre: joueurs la liste des joueurs
     résultat: le nom du joueur courant
     """
-    return getNom(joueurs[0])
+    return getNom(getJoueurCourant(joueurs))
 
 def nomJoueur(joueurs,numJoueur):
     """
@@ -128,7 +129,7 @@ def nomJoueur(joueurs,numJoueur):
                 numJoueur le numéro du joueur    
     résultat: le nom du joueur numJoueur
     """
-    return getNom(joueurs[numJoueur])
+    return getNom(joueurs['Joueurs'][numJoueur])
 
 def prochainTresorJoueur(joueurs,numJoueur):
     """
@@ -137,7 +138,7 @@ def prochainTresorJoueur(joueurs,numJoueur):
                 numJoueur le numéro du joueur    
     résultat: le prochain trésor du joueur numJoueur (un entier)
     """
-    return prochainTresor(joueurs[numJoueur])
+    return prochainTresor(joueurs['Joueurs'][numJoueur])
 
 def tresorCourant(joueurs):
     """
@@ -145,7 +146,7 @@ def tresorCourant(joueurs):
     paramètre: joueurs la liste des joueurs 
     résultat: le prochain trésor du joueur courant (un entier)
     """
-    return prochainTresor(joueurs[0])
+    return prochainTresor(getJoueurCourant(joueurs))
 
 def joueurCourantAFini(joueurs):
     """
@@ -153,26 +154,28 @@ def joueurCourantAFini(joueurs):
     paramètre: joueurs la liste des joueurs 
     résultat: un booleen indiquant si le joueur courant a fini
     """
-    return joueurs[0][1] == []
+    return nbTresorsRestantsJoueur(joueurs,joueurs['JoueurCourant']) == 0
 
 if __name__=='__main__':
-  listenoms = ['Ludovic', 'Océanne', 'Damien', 'Emerick']
-  print('Liste des joueurs:',ListeJoueurs(listenoms))
-  ajouterJoueur(listenoms, 'Hector')
+  listenoms = ListeJoueurs(['Ludovic', 'Océanne', 'Damien', 'Emerick'])
+  print('Liste des joueurs:',listenoms)
+  ajouterJoueur(listenoms, Joueur('Hector'))
   print('Ajout d un joueur:',listenoms)
   initAleatoireJoueurCourant(listenoms)
   print('Changement de joueur courant:',listenoms)
+  print('Le joueur courant a-t-il fini ?', joueurCourantAFini(listenoms))
   distribuerTresors(listenoms,12, 0)
   print('Distribution des trésors:',listenoms)
   changerJoueurCourant(listenoms)
   print('Joueur courant suivant:',listenoms)
   print('Il y a',getNbJoueurs(listenoms),'joueurs dans la partie')
   print('Le joueur courant est',getJoueurCourant(listenoms))
-  print('Le joueur courant s appelle',nomJoueurCourant(listenoms))
-  print('Le joueur courant a-t-il finit ?',joueurCourantAFini(listenoms))
   joueurCourantTrouveTresor(listenoms)
   print('Le joueur courant a trouvé un trésor:',listenoms)
-  print('Il reste',nbTresorsRestantsJoueur(listenoms,0),'trésor(s) à trouver au joueur courant')
-  print('Le joueur s appelle',nomJoueur(listenoms, 1))
-  print('Le prochain trésor à trouver du joueur porte le n°',prochainTresorJoueur(listenoms,1))
-  print('Le prochain trésor à trouver du joueur courant porte le n°', tresorCourant(listenoms))
+  print('Il reste',nbTresorsRestantsJoueur(listenoms,0),'trésor(s) à trouver pour le joueur')
+  print('Le joueur courant porte le n°', numJoueurCourant(listenoms))
+  print('Le joueur courant se somme', nomJoueurCourant(listenoms))
+  print('Le joueur s appelle',nomJoueur(listenoms, 4))
+  print('Le prochain trésor à trouver pour', nomJoueur(listenoms, 1),'porte le n°',prochainTresorJoueur(listenoms,1))
+  print('Le prochain trésor à trouver pour le joueur courant porte le n°', tresorCourant(listenoms))
+  print('Le joueur courant a-t-il fini ?', joueurCourantAFini(listenoms))
