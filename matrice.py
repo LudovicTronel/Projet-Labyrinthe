@@ -14,11 +14,17 @@
 #-----------------------------------------
 
 def Matrice(nbLignes, nbColonnes, valeurParDefaut=0):
-    if nbLignes<0 or nbColonnes<0:
-        return('Veuillez entrer des chiffres positifs pour la création du plateau')
-    else :
-        for i in range(nbColonnes):
-            print(([valeurParDefaut for i in range(nbLignes)]))
+	matrice=[]
+	for i in range(nbLignes):
+		matrice.append([])
+		for j in range(nbColonnes):
+			matrice[i].append(valeurParDefaut)
+
+	return matrice 
+
+	matrice=Matrice(7,7)
+	for ligne in matrice:
+		print(ligne)
 
 
 def getNbLignes(matrice):
@@ -26,34 +32,16 @@ def getNbLignes(matrice):
     retourne le nombre de lignes de la matrice
     paramètre: matrice la matrice considérée
     """
-    ligne=()
-    nbLignes=()
-    i=0
-        for i in range(ligne):
-            while i<len(liste):
-                i=i+1
-                if i==len(ligne):
-                    nbLignes.append(1)
-            return nbLignes
-        return nbLignes
-    
+		return len(matrice)
+	
 
 def getNbColonnes(matrice):
     """
     retourne le nombre de colonnes de la matrice
     paramètre: matrice la matrice considérée
     """
-    colonne=()
-    nbColonnes=()
-    i=0
-        for i in range(colonne):
-            while i<len(colonne):
-                i=i+1
-                if i==len(colonne):
-                    nbColonnes.append(1)
-            return nbColonnes
-        return nbColonnes
-    return nbColonnes
+	return len(matrice[0])
+
 
 def getVal(matrice,ligne,colonne):
     """
@@ -62,13 +50,9 @@ def getVal(matrice,ligne,colonne):
                 ligne le numéro de la ligne (en commençant par 0)
                 colonne le numéro de la colonne (en commençant par 0)
     """
-    val=""
-    for ligne in matrice:
-      for collonne in ligne:
-          for val in colonne:
-            return val
+  return matrice[ligne][colonne]
 
-def setVal(matrice,ligne,colonne,val):
+def setVal(matrice,ligne,colonne,valeur):
     """
     met la valeur dans la case se trouve en (ligne,colonne) de la matrice
     paramètres: matrice la matrice considérée
@@ -77,13 +61,7 @@ def setVal(matrice,ligne,colonne,val):
                 valeur la valeur à stocker dans la matrice
     cette fonction ne retourne rien mais modifie la matrice
     """
-    val=""
-    for ligne in colonne:
-        matrice.append(val) 
-    
-    
-   
-
+  matrice[ligne][colonne]=valeur
 
 #------------------------------------------        
 # decalages
@@ -98,11 +76,9 @@ def decalageLigneAGauche(matrice, numLig, nouvelleValeur=0):
                  nouvelleValeur la valeur à placer
     résultat la valeur qui a été ejectée lors du décalage
     """
-    numLig=[]
-    M=Matrice 
-    for i in range(numLig):
-        numLig.append(M[-1])
-    return nouvelleValeur
+		matrice[numLig].append(nouvelleValeur)
+		valeur=matrice[numLig].pop(0)
+  	return valeur
 
 def decalageLigneADroite(matrice, numLig, nouvelleValeur=0):
     """
@@ -113,12 +89,9 @@ def decalageLigneADroite(matrice, numLig, nouvelleValeur=0):
                  nouvelleValeur la valeur à placer
     résultat: la valeur de la case "ejectée" par le décalage
     """
-    
-    numLig=[]
-    M=matrice
-    for i in range(numLig):
-        numLig.append(M[+1])
-    return nouvelleValeur
+		matrice[numLig].append(nouvelleValeur)
+		valeur=matrice[numLig].pop(-1)
+		return valeur 
 
 def decalageColonneEnHaut(matrice, numCol, nouvelleValeur=0):
     """
@@ -129,12 +102,12 @@ def decalageColonneEnHaut(matrice, numCol, nouvelleValeur=0):
                  nouvelleValeur la valeur à placer
     résultat: la valeur de la case "ejectée" par le décalage
     """
-   
-    numCol=[]
-    M=matrice
-    for i in range(numCol):
-        numCol.append(M[-1])
-    return nouvelleValeur
+		res=matrice[0][numCol]
+		for j in range(getNbLignes(matrice)-1):
+				matrice[j][numCol]=matrice[j+1][numCol]
+		matrice[-1][numCol]=nouvelleValeur
+		return res
+	
 
 def decalageColonneEnBas(matrice, numCol, nouvelleValeur=0):
     """
@@ -145,12 +118,13 @@ def decalageColonneEnBas(matrice, numCol, nouvelleValeur=0):
                  nouvelleValeur la valeur à placer
     résultat: la valeur de la case "ejectée" par le décalage
     """
-    numCol=[]
-    M=matrice
-    for i in range(numCol):
-        numCol.append(M[+1])
-    return nouvelleValeur
+		res=matrice[-1][numCol]
+		for j in range(getNbLignes(matrice)-1):
+			matrice[j+1][numCol]=matrice[j][numCol]
+		matrice[0][numCol]=nouvelleValeur
+		return res
 
+	
 
 """if __name__=='__main__':
 
