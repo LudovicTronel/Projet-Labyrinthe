@@ -124,10 +124,15 @@ def decalageColonneEnBas(matrice, numCol, nouvelleValeur=0):
 		matrice[0][numCol]=nouvelleValeur
 	return res
 
-	
+if __name__=='__main__':
+	m=Matrice(7,7)
+	print('verification création matrice:', m)
+	print('verif retourne nombre de ligne exact:', getNbLignes(m))
+	print('verif retourne nombre de colonne exact:', getNbColonnes(m))
+	print('verif récupérer la valeur en lignecolonne:', getVal(m,2,2))
+	print('verif mettre la valeur dans la case en ligne/colonne:', setVal(m,2,2,0))
+	print('verif décalage a gauche ligne:', decalageLigneAGauche(m,2,4))
+	print('verif décalage a droite ligne:', decalageLigneADroite(m,2,1))
+	print('verif décalage colonne en haut:', decalageColonneEnHaut(m,4,6))
+	print('verif décalage colonne en bas:', decalageColonneEnBas(m,5,1))
 
-"""if __name__=='__main__':
-
-    m=Matrice(10,8,0)
-    print('verification créatison matrice:', Matrice(10,8,0))
-    print(' verif retourne nombre de ligne exact:', getNbLignes(Matrice))"""
