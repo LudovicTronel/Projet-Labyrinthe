@@ -90,7 +90,7 @@ def decalageLigneADroite(matrice, numLig, nouvelleValeur=0):
     résultat: la valeur de la case "ejectée" par le décalage
     """
 	matrice[numLig].append(nouvelleValeur)
-	valeur=matrice[numLig].pop(-1)
+	valeur=matrice[numLig].pop(-1)  #ne fonctionnne pas avec .append, car valeur enlevé puis rajouter ( a modifié )
 	return valeur 
 
 def decalageColonneEnHaut(matrice, numCol, nouvelleValeur=0):
