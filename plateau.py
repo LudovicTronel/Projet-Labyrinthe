@@ -13,6 +13,32 @@ from matrice import *
 from carte import *
 
 def Plateau(nbJoueurs, nbTresors):
+    
+    #créer la matrice
+    m=Matrice(7,7)
+    m={nbJoueurs,nbTresors}
+
+    #creer et placer les 16 cartes fixes du plateau:
+    setVal(matrice,0,0,Carte(True,False,False,True)) #coins 1er joueur(pas de trésor)
+    setVal(matrice,0,3,Carte(True,False,False,False))
+    setVal(matrice,0,5,Carte(True,False,False,False))
+    setVal(matrice,0,7,Carte(True,True,False,False)) #coins 2e joueur(pas de trésor)
+
+    setVal(matrice,3,0,Carte(False,False,False,True))
+    setVal(matrice,3,3,Carte(False,False,False,True))
+    setVal(matrice,3,5,Carte(True,False,False,False))
+    setVal(matrice,3,7,Carte(False,True,False,False))
+
+    setVal(matrice,5,0,Carte(False,False,False,True))
+    setVal(matrice,5,3,Carte(False,False,True,False))
+    setVal(matrice,5,5,Carte(False,True,False,False))
+    setVal(matrice,5,7,Carte(False,True,False,False))
+
+    setVal(matrice,7,0,Carte(False,False,True,True)) #coins 3e joueur(pas de trésor)
+    setVal(matrice,7,3,Carte(False,False,True,False))
+    setVal(matrice,7,5,Carte(False,False,True,False))
+    setVal(matrice(7,7,Carte(False,True,True,False)) #coins 4e joueur(pas de trésor)
+           
     """
     créer un nouveau plateau contenant nbJoueurs et nbTrésors
     paramètres: nbJoueurs le nombre de joueurs (un nombre entre 1 et 4)
@@ -22,7 +48,7 @@ def Plateau(nbJoueurs, nbTresors):
                 ont été placée de manière aléatoire
               - la carte amovible qui n'a pas été placée sur le plateau
     """
-    pass
+    
 
 
 
