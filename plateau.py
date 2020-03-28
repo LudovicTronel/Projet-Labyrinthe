@@ -13,6 +13,16 @@ from matrice import *
 from carte import *
 
 def Plateau(nbJoueurs, nbTresors):
+  
+  """
+    créer un nouveau plateau contenant nbJoueurs et nbTrésors
+    paramètres: nbJoueurs le nombre de joueurs (un nombre entre 1 et 4)
+                nbTresors le nombre de trésor à placer (un nombre entre 1 et 49)
+    resultat: un couple contenant
+              - une matrice de taille 7x7 représentant un plateau de labyrinthe où les cartes
+                ont été placée de manière aléatoire
+              - la carte amovible qui n'a pas été placée sur le plateau
+    """
     
     #créer la matrice
     m=Matrice(7,7)
@@ -38,19 +48,6 @@ def Plateau(nbJoueurs, nbTresors):
     setVal(matrice,7,3,Carte(False,False,True,False))
     setVal(matrice,7,5,Carte(False,False,True,False))
     setVal(matrice(7,7,Carte(False,True,True,False)) #coins 4e joueur(pas de trésor)
-           
-    """
-    créer un nouveau plateau contenant nbJoueurs et nbTrésors
-    paramètres: nbJoueurs le nombre de joueurs (un nombre entre 1 et 4)
-                nbTresors le nombre de trésor à placer (un nombre entre 1 et 49)
-    resultat: un couple contenant
-              - une matrice de taille 7x7 représentant un plateau de labyrinthe où les cartes
-                ont été placée de manière aléatoire
-              - la carte amovible qui n'a pas été placée sur le plateau
-    """
-    
-
-
 
 def creerCartesAmovibles(tresorDebut,nbTresors):
     """
