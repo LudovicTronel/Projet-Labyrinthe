@@ -51,6 +51,9 @@ def Plateau(nbJoueurs, nbTresors):
     setVal(matrice,7,5,Carte(False,False,True,False))
     setVal(matrice(7,7,Carte(False,True,True,False)) #coins 4e joueur(pas de trésor)
 
+           #manque initier carte amovible en dehors du plateau
+    return m 
+           
 def creerCartesAmovibles(tresorDebut,nbTresors):
     """
     fonction utilitaire qui permet de créer les cartes amovibles du jeu en y positionnant
@@ -60,18 +63,16 @@ def creerCartesAmovibles(tresorDebut,nbTresors):
                 nbTresors: le nombre total de trésor à créer
     résultat: la liste mélangée aléatoirement des cartes amovibles créees
     """
-    CarteAmovible=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33]
+    CarteAmovible=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33] #liste des cartes amovibles (49-16 cartes fixes -1 carte en de hors du plateau)
     nbTresors=[]
     i=0
-    tresorDebut=1
+    #manque tresorDebut??
            
     for elem in (CarteAmovible):
-           CarteAmovible[i]=nbTresors
-           random.shuffle(CarteAmovible)
+           CarteAmovible[i]=nbTresors #pour chaque indice de la liste, y ajouter un tresor ??
+           random.shuffle(CarteAmovible)#mélanger aléatoirement la liste
            
     return CarteAmovible
-    print("liste des cartes:",creerCartesAmovibles(0,10))
-    pass
 
 def prendreTresorPlateau(plateau,lig,col,numTresor):
                """
