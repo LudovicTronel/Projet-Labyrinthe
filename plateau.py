@@ -11,6 +11,8 @@
 
 from matrice import *
 from carte import *
+from random import shuffle
+
 
 def Plateau(nbJoueurs, nbTresors):
   
@@ -58,30 +60,51 @@ def creerCartesAmovibles(tresorDebut,nbTresors):
                 nbTresors: le nombre total de trésor à créer
     résultat: la liste mélangée aléatoirement des cartes amovibles créees
     """
+    CarteAmovible=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33]
+    nbTresors=[]
+    i=0
+    tresorDebut=1
+           
+    for elem in (CarteAmovible):
+           CarteAmovible[i]=nbTresors
+           random.shuffle(CarteAmovible)
+           
+    return CarteAmovible
+    print("liste des cartes:",creerCartesAmovibles(0,10))
     pass
 
 def prendreTresorPlateau(plateau,lig,col,numTresor):
-    """
-    prend le tresor numTresor qui se trouve sur la carte en lig,col du plateau
+               """
+    prend le tresor numTresor qui se trouve sur la carte en lin,col du plateau
     retourne True si l'opération s'est bien passée (le trésor était vraiment sur
-    la carte)
+    la carte
     paramètres: plateau: le plateau considéré
                 lig: la ligne où se trouve la carte
                 col: la colonne où se trouve la carte
                 numTresor: le numéro du trésor à prendre sur la carte
     resultat: un booléen indiquant si le trésor était bien sur la carte considérée
     """
-    pass
-
+           
+    if numTresor in plateau['numTresor'[lig][col]]:
+           return True 
+    else:
+           return False
+           
 def getCoordonneesTresor(plateau,numTresor):
-    """
+               """
     retourne les coordonnées sous la forme (lig,col) du trésor passé en paramètre
     paramètres: plateau: le plateau considéré
                 numTresor: le numéro du trésor à trouver
     resultat: un couple d'entier donnant les coordonnées du trésor ou None si
               le trésor n'est pas sur le plateau
     """
-    pass
+           
+           
+    if numTresor in plateau['numTresor'[lig][col]]:
+           return lig,col
+    else:
+           return None 
+           
 
 def getCoordonneesJoueur(plateau,numJoueur):
     """
@@ -91,7 +114,11 @@ def getCoordonneesJoueur(plateau,numJoueur):
     resultat: un couple d'entier donnant les coordonnées du joueur ou None si
               le joueur n'est pas sur le plateau
     """
-    pass
+    if numJoueur in plateau['numJoueur'[lig][col]]:
+           return lig,col
+    else:
+           return None
+    
 
 def prendrePionPlateau(plateau,lig,col,numJoueur):
     """
@@ -102,7 +129,8 @@ def prendrePionPlateau(plateau,lig,col,numJoueur):
                 numJoueur: le numéro du joueur qui correspond au pion
     Cette fonction ne retourne rien mais elle modifie le plateau
     """
-    pass
+    pion = plateau[numJoueur[lig][col]] 
+    
 
 def poserPionPlateau(plateau,lig,col,numJoueur):
     """
@@ -113,7 +141,7 @@ def poserPionPlateau(plateau,lig,col,numJoueur):
                 numJoueur: le numéro du joueur qui correspond au pion
     Cette fonction ne retourne rien mais elle modifie le plateau
     """
-    pass
+    plateau['pion']=plateau[numJoueur[lig][col]]
 
 def accessible(plateau,ligD,colD,ligA,colA):
     """
