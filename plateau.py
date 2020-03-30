@@ -25,7 +25,7 @@ def Plateau(nbJoueurs, nbTresors):
                 ont été placée de manière aléatoire
               - la carte amovible qui n'a pas été placée sur le plateau
     """
-    
+    m={nbJoueurs,nbTresors}
     c={'Matrice': Matrice(7,7),'Carte': Carte(False,False,False,False)}
 		
 	setVal(c['Matrice'],0,0,toChar(Carte(True,False,False,True)))
@@ -59,16 +59,53 @@ def creerCartesAmovibles(tresorDebut,nbTresors):
                 nbTresors: le nombre total de trésor à créer
     résultat: la liste mélangée aléatoirement des cartes amovibles créees
     """
-    CarteAmovible=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33] #liste des cartes amovibles (49-16 cartes fixes -1 carte en de hors du plateau)
-    nbTresors=[]
-    i=0
-    #manque tresorDebut??
-           
-    for elem in (CarteAmovible):
-           CarteAmovible[i]=nbTresors #pour chaque indice de la liste, y ajouter un tresor ??
-           random.shuffle(CarteAmovible)#mélanger aléatoirement la liste
-           
-    return CarteAmovible
+   	#création Cartes Amovibles Angles x16
+	cA1={'Matrice':Matrice(7,7), 'Carte':Carte(True,False,False,True)} #mettre tresor aléatoire 
+	cA2={'Matrice':Matrice(7,7), 'Carte':Carte(True,False,False,True)} #enlever matrice(7,7)??? 
+	cA3={'Matrice':Matrice(7,7), 'Carte':Carte(True,False,False,True)}
+	cA4={'Matrice':Matrice(7,7), 'Carte':Carte(True,False,False,True)}
+	cA5={'Matrice':Matrice(7,7), 'Carte':Carte(True,False,False,True)}
+	cA6={'Matrice':Matrice(7,7), 'Carte':Carte(True,False,False,True)}
+	cA7={'Matrice':Matrice(7,7), 'Carte':Carte(True,False,False,True)}
+	cA8={'Matrice':Matrice(7,7), 'Carte':Carte(True,False,False,True)}
+	cA9={'Matrice':Matrice(7,7), 'Carte':Carte(True,False,False,True)}
+	cA10={'Matrice':Matrice(7,7), 'Carte':Carte(True,False,False,True)}
+	cA11={'Matrice':Matrice(7,7), 'Carte':Carte(True,False,False,True)}
+	cA12={'Matrice':Matrice(7,7), 'Carte':Carte(True,False,False,True)}
+	cA13={'Matrice':Matrice(7,7), 'Carte':Carte(True,False,False,True)}
+	cA14={'Matrice':Matrice(7,7), 'Carte':Carte(True,False,False,True)}
+	cA15={'Matrice':Matrice(7,7), 'Carte':Carte(True,False,False,True)}
+	cA16={'Matrice':Matrice(7,7), 'Carte':Carte(True,False,False,True)}
+	cAngle=[cA1,cA2,cA3,cA4,cA5,cA6,cA7,cA8,cA9,cA10,cA11,cA12,cA13,cA14,cA15,cA16]
+
+	#création Cartes Amovibles Jonctions x6
+	cJ1={'Matrice':Matrice(7,7), 'Carte':Carte(False,False,False,True)}
+	cJ2={'Matrice':Matrice(7,7), 'Carte':Carte(False,False,False,True)}
+	cJ3={'Matrice':Matrice(7,7), 'Carte':Carte(False,False,False,True)}
+	cJ4={'Matrice':Matrice(7,7), 'Carte':Carte(False,False,False,True)}
+	cJ5={'Matrice':Matrice(7,7), 'Carte':Carte(False,False,False,True)}
+	cJ6={'Matrice':Matrice(7,7), 'Carte':Carte(False,False,False,True)}
+	cJonction=[cJ1,cJ2,cJ3,cJ4,cJ5,cJ6]
+
+	#création Cartes Amovibles ToutDroits x12
+	cDT1={'Matrice':Matrice(7,7),'Carte':Carte(False,True,False,True)}
+	cDT2={'Matrice':Matrice(7,7),'Carte':Carte(False,True,False,True)}
+	cDT3={'Matrice':Matrice(7,7),'Carte':Carte(False,True,False,True)}
+	cDT4={'Matrice':Matrice(7,7),'Carte':Carte(False,True,False,True)}
+	cDT5={'Matrice':Matrice(7,7),'Carte':Carte(False,True,False,True)}
+	cDT6={'Matrice':Matrice(7,7),'Carte':Carte(False,True,False,True)}
+	cDT7={'Matrice':Matrice(7,7),'Carte':Carte(False,True,False,True)}
+	cDT8={'Matrice':Matrice(7,7),'Carte':Carte(False,True,False,True)}
+	cDT9={'Matrice':Matrice(7,7),'Carte':Carte(False,True,False,True)}
+	cDT10={'Matrice':Matrice(7,7),'Carte':Carte(False,True,False,True)}
+	cDT11={'Matrice':Matrice(7,7),'Carte':Carte(False,True,False,True)}
+	cDT12={'Matrice':Matrice(7,7),'Carte':Carte(False,True,False,True)}
+	cToutDroit=[cDT1,cDT2,cDT3,cDT4,cDT5,cDT6,cDT7,cDT8,cDT9,cDT10,cDT11,cDT12]
+
+	ListeCarte=cAngle+cJonction+cToutDroit
+	random.shuffle(ListeCarte)
+	return ListeCarte
+	print(ListeCarte)
 
 def prendreTresorPlateau(plateau,lig,col,numTresor):
                """
