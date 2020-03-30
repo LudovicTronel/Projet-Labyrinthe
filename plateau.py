@@ -26,33 +26,29 @@ def Plateau(nbJoueurs, nbTresors):
               - la carte amovible qui n'a pas été placée sur le plateau
     """
     
-    #créer la matrice
-    m=Matrice(7,7)
-    m={nbJoueurs,nbTresors}
+    c={'Matrice': Matrice(7,7),'Carte': Carte(False,False,False,False)}
+		
+	setVal(c['Matrice'],0,0,toChar(Carte(True,False,False,True)))
+	setVal(c['Matrice'],0,2,toChar(Carte(True,False,False,False)))
+	setVal(c['Matrice'],0,4,toChar(Carte(True,False,False,False)))
+	setVal(c['Matrice'],0,6,toChar(Carte(True,True,False,False)))
 
-    #creer et placer les 16 cartes fixes du plateau:
-    setVal(matrice,0,0,Carte(True,False,False,True)) #coins 1er joueur(pas de trésor)
-    setVal(matrice,0,3,Carte(True,False,False,False))
-    setVal(matrice,0,5,Carte(True,False,False,False))
-    setVal(matrice,0,7,Carte(True,True,False,False)) #coins 2e joueur(pas de trésor)
+	setVal(c['Matrice'],2,0,toChar(Carte(False,False,False,True)))
+	setVal(c['Matrice'],2,2,toChar(Carte(False,False,False,True)))
+	setVal(c['Matrice'],2,4,toChar(Carte(True,False,False,False)))
+	setVal(c['Matrice'],2,6,toChar(Carte(False,True,False,False)))
 
-    setVal(matrice,3,0,Carte(False,False,False,True))
-    setVal(matrice,3,3,Carte(False,False,False,True))
-    setVal(matrice,3,5,Carte(True,False,False,False))
-    setVal(matrice,3,7,Carte(False,True,False,False))
+	setVal(c['Matrice'],4,0,toChar(Carte(False,False,False,True)))
+	setVal(c['Matrice'],4,2,toChar(Carte(False,False,True,False)))
+	setVal(c['Matrice'],4,4,toChar(Carte(False,True,False,False)))
+	setVal(c['Matrice'],4,6,toChar(Carte(False,True,False,False)))
 
-    setVal(matrice,5,0,Carte(False,False,False,True))
-    setVal(matrice,5,3,Carte(False,False,True,False))
-    setVal(matrice,5,5,Carte(False,True,False,False))
-    setVal(matrice,5,7,Carte(False,True,False,False))
+	setVal(c['Matrice'],6,0,toChar(Carte(False,False,True,True)))
+	setVal(c['Matrice'],6,2,toChar(Carte(False,False,True,False)))
+	setVal(c['Matrice'],6,4,toChar(Carte(False,False,True,False)))
+	setVal(c['Matrice'],6,6,toChar(Carte(False,True,True,False)))
 
-    setVal(matrice,7,0,Carte(False,False,True,True)) #coins 3e joueur(pas de trésor)
-    setVal(matrice,7,3,Carte(False,False,True,False))
-    setVal(matrice,7,5,Carte(False,False,True,False))
-    setVal(matrice(7,7,Carte(False,True,True,False)) #coins 4e joueur(pas de trésor)
-
-           #manque initier carte amovible en dehors du plateau
-    return m 
+	return c
            
 def creerCartesAmovibles(tresorDebut,nbTresors):
     """
