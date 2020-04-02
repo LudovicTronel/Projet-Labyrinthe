@@ -107,7 +107,6 @@ def possedePion(c,pion):
     else:
         return False
 
-
 def getTresor(c):
     """
     retourne la valeur du trésor qui se trouve sur la carte (0 si pas de trésor)
@@ -143,12 +142,11 @@ def prendrePion(c, pion):
                 pion un entier compris entre 1 et 4
     Cette fonction modifie la carte mais ne retourne rien
     """
-    for i in range(len(c['Pions'])):
-        if c['Pions'][i] == pion:
-            indice = i
-    del c['Pions'][indice]
+    for i in range(getNbPions(c)):
+      if c['Pions'][i]==pion:
+        supp = i
+    del c['Pions'][supp]
     
-
 def poserPion(c, pion):
     """
     pose le pion passé en paramètre sur la carte. Si le pion y était déjà ne fait rien
@@ -312,7 +310,7 @@ if __name__=='__main__':
     print('La carte renferme le trésor n° ', getTresor(c))
     print('Le tresor n°', prendreTresor(c),' va être enlevé')
     print('L ancien trésor était le n°', mettreTresor(c, 1))
-    prendrePion(c, 1)
+    prendrePion(c, 3)
     print('Verification de la suppresion du pion', c)
     poserPion(c, 2)
     print('Verification de l ajout du pion', c)

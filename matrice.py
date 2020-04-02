@@ -14,13 +14,22 @@
 #-----------------------------------------
 
 def Matrice(nbLignes, nbColonnes, valeurParDefaut=0):
-	matrice=[]
-	for i in range(nbLignes):
-		matrice.append([])
-		for j in range(nbColonnes):
-			matrice[i].append(valeurParDefaut)
-
-	return matrice 
+  """
+  crée une matrice de nbLignes lignes sur nbColonnes colonnes en mettant 
+  valeurParDefaut dans chacune des cases
+  paramètres: 
+    nbLignes un entier strictement positif qui indique le nombre de lignes
+    nbColonnes un entier strictement positif qui indique le nombre de colonnes
+    valeurParDefaut la valeur par défaut
+  résultat la matrice ayant les bonnes propriétés
+  """
+  matrice=[]
+  for i in range(nbLignes):
+    matrice.append([])
+    for j in range(nbColonnes):
+      matrice[i].append(valeurParDefaut)
+      
+  return matrice 
 
 def getNbLignes(matrice):
   """

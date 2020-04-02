@@ -262,7 +262,7 @@ if __name__=='__main__':
   print('Verification du changement de phase, la phase', getPhase(lab), 'est désormais engagée.')
   print('Il reste',getNbTresors(lab), 'trésor(s) dans le labyrinthe.')
   print('La liste des joueurs est:', getListeJoueurs(lab))
-  enleverTresor(lab,4,21,3)
+  enleverTresor(lab,4,6,3)
   print('Verification de la suppression du trésor:', getNbTresors(lab))
   prendreJoueurCourant(lab,4,5)
   print('Verification de l enlèvement du joueur courant:', lab)
