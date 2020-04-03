@@ -1,4 +1,4 @@
-    # -*- coding: utf-8 -*-
+     # -*- coding: utf-8 -*-
 """
     Projet Labyrinthe
     Projet Python 2020 - Licence Informatique UNC (S3 TREC7)
@@ -24,48 +24,58 @@ def Plateau(nbJoueurs, nbTresors):
               ont été placée de manière aléatoire
             - la carte amovible qui n'a pas été placée sur le plateau
   """
-  c={'Matrice': Matrice(7,7),'Carte': 0 }
+  listeCartes = creerCartesAmovibles(1,nbTresors)
+  c={'Matrice': Matrice(7,7),'CarteRestante': listeCartes[-1] }
   
-  setVal(c['Matrice'],0,0,Carte(True,False,False,True,1,[1]))
-  setVal(c['Matrice'],0,1,Carte(True,False,False,True,0,[3]))#supp
+  setVal(c['Matrice'],0,0,Carte(True,False,False,True,None,1))
+  setVal(c['Matrice'],0,1,listeCartes[0])
   setVal(c['Matrice'],0,2,Carte(True,False,False,False))
-  setVal(c['Matrice'],0,3,Carte(True,False,False,True))#supp
+  setVal(c['Matrice'],0,3,listeCartes[1])
   setVal(c['Matrice'],0,4,Carte(True,False,False,False))
-  setVal(c['Matrice'],0,5,Carte(True,False,False,True))#supp
-  setVal(c['Matrice'],0,6,Carte(True,True,False,False))
+  setVal(c['Matrice'],0,5,listeCartes[2])
+  if nbJoueurs>=1:
+    setVal(c['Matrice'],0,6,Carte(True,True,False,False,None,2))
+  else:
+    setVal(c['Matrice'],0,6,Carte(True,True,False,False))
 
   for i in range(len(c['Matrice'][1])):
-    setVal(c['Matrice'],1,i,Carte(False,False,True,True))
+      setVal(c['Matrice'],1,i,listeCartes[i+3])
   
   setVal(c['Matrice'],2,0,Carte(False,False,False,True))
-  setVal(c['Matrice'],2,1,Carte(True,False,False,True,2))#supp
+  setVal(c['Matrice'],2,1,listeCartes[10])
   setVal(c['Matrice'],2,2,Carte(False,False,False,True))
-  setVal(c['Matrice'],2,3,Carte(True,False,False,True))#supp
+  setVal(c['Matrice'],2,3,listeCartes[11])
   setVal(c['Matrice'],2,4,Carte(True,False,False,False))
-  setVal(c['Matrice'],2,5,Carte(True,False,False,True))#supp
+  setVal(c['Matrice'],2,5,listeCartes[12])
   setVal(c['Matrice'],2,6,Carte(False,True,False,False))
 
   for i in range(len(c['Matrice'][3])):
-    setVal(c['Matrice'],3,i,Carte(False,False,True,True))
+    setVal(c['Matrice'],3,i,listeCartes[i+13])
   
   setVal(c['Matrice'],4,0,Carte(False,False,False,True))
-  setVal(c['Matrice'],4,1,Carte(False,False,False,True))#supp
+  setVal(c['Matrice'],4,1,listeCartes[14])
   setVal(c['Matrice'],4,2,Carte(False,False,True,False))
-  setVal(c['Matrice'],4,3,Carte(False,False,False,True))#supp
+  setVal(c['Matrice'],4,3,listeCartes[15])
   setVal(c['Matrice'],4,4,Carte(False,True,False,False))
-  setVal(c['Matrice'],4,5,Carte(False,False,False,True))#supp
+  setVal(c['Matrice'],4,5,listeCartes[16])
   setVal(c['Matrice'],4,6,Carte(False,True,False,False))
 
   for i in range(len(c['Matrice'][5])):
-    setVal(c['Matrice'],5,i,Carte(False,False,True,True))
+    setVal(c['Matrice'],5,i,listeCartes[i+17])
   
-  setVal(c['Matrice'],6,0,Carte(False,False,True,True))
-  setVal(c['Matrice'],6,1,Carte(False,False,True,True))#supp
+  if nbJoueurs>=2:
+    setVal(c['Matrice'],6,0,Carte(True,True,False,False,None,3))
+  else:
+     setVal(c['Matrice'],6,0,Carte(True,True,False,False))
+  setVal(c['Matrice'],6,1,listeCartes[18])
   setVal(c['Matrice'],6,2,Carte(False,False,True,False))
-  setVal(c['Matrice'],6,3,Carte(False,False,True,True))#supp
+  setVal(c['Matrice'],6,3,listeCartes[19])
   setVal(c['Matrice'],6,4,Carte(False,False,True,False))
-  setVal(c['Matrice'],6,5,Carte(False,False,True,True))#supp
-  setVal(c['Matrice'],6,6,Carte(False,True,True,False))
+  setVal(c['Matrice'],6,5,listeCartes[20])
+  if nbJoueurs>=3:
+    setVal(c['Matrice'],6,6,Carte(True,True,False,False,None,4))
+  else:
+     setVal(c['Matrice'],6,6,Carte(True,True,False,False))
   
   return c
            
@@ -162,7 +172,8 @@ def prendrePionPlateau(plateau,lig,col,numJoueur):
               numJoueur: le numéro du joueur qui correspond au pion
   Cette fonction ne retourne rien mais elle modifie le plateau
   """
-  prendrePion(plateau['Matrice'][lig][col], numJoueur)
+  if getNbPions(plateau['Matrice'][lig][col]) == numJoueur:
+    prendrePion(plateau['Matrice'][lig][col], numJoueur)
     
 
 def poserPionPlateau(plateau,lig,col,numJoueur):
@@ -186,9 +197,31 @@ def accessible(plateau,ligD,colD,ligA,colA):
               colA: la colonne de la case d'arrivée
   résultat: un boolean indiquant s'il existe un chemin entre la case de départ
             et la case d'arrivée
-  """
-  "Essayer avec la récursivité"
-  pass
+  """ 
+  cartAccessibles = [[ligD,colD]]
+  
+  for i in range(getNbLignes(plateau['Matrice'])*getNbColonnes(plateau['Matrice'])):
+    if i==(len(cartAccessibles)):
+      return False
+
+    elif cartAccessibles[i][0]>=1:
+      if passageNord(plat['Matrice'][cartAccessibles[i][0]][cartAccessibles[i][1]],plat['Matrice'][cartAccessibles[i][0]-1][cartAccessibles[i][1]]) and [cartAccessibles[i][0]-1,cartAccessibles[i][1]] not in cartAccessibles:
+        cartAccessibles.append([cartAccessibles[i][0]-1,cartAccessibles[i][1]])
+    
+    if cartAccessibles[i][0]<=5:
+      if passageSud(plat['Matrice'][cartAccessibles[i][0]][cartAccessibles[i][1]],plat['Matrice'][cartAccessibles[i][0]+1][cartAccessibles[i][1]]) and [cartAccessibles[i][0]+1,cartAccessibles[i]  [1]] not in cartAccessibles:
+        cartAccessibles.append([cartAccessibles[i][0]+1,cartAccessibles[i][1]])
+    
+    if cartAccessibles[i][1]<=5:
+      if passageEst(plat['Matrice'][cartAccessibles[i][0]][cartAccessibles[i][1]],plat['Matrice'][cartAccessibles[i][0]][cartAccessibles[i][1]+1]) and [cartAccessibles[i][0],cartAccessibles[i]  [1]+1] not in cartAccessibles:
+        cartAccessibles.append([cartAccessibles[i][0],cartAccessibles[i][1]+1])
+    
+    if cartAccessibles[i][1]>=1:
+      if passageOuest(plat['Matrice'][cartAccessibles[i][0]][cartAccessibles[i][1]],plat['Matrice'][cartAccessibles[i][0]][cartAccessibles[i][1]-1]) and [cartAccessibles[i][0],cartAccessibles[i][1]-1] not in cartAccessibles:
+        cartAccessibles.append([cartAccessibles[i][0],cartAccessibles[i][1]-1])
+    
+    if [ligA, colA] in cartAccessibles:
+      return True
 
 def accessibleDist(plateau,ligD,colD,ligA,colA):
   """
@@ -204,10 +237,49 @@ def accessibleDist(plateau,ligD,colD,ligA,colA):
   résultat: une liste de coordonées indiquant un chemin possible entre la case
             de départ et la case d'arrivée
   """
-  pass  
+  cartAccessibles = [[ligD,colD]]
+  route = None
+  chemin = []
+  
+  for i in range(getNbLignes(plateau['Matrice'])*getNbColonnes(plateau['Matrice'])):
+    if i==(len(cartAccessibles)):
+      return route
 
-if __name__ == '__main__':
-  plat = Plateau(2, 5)
+    elif cartAccessibles[i][0]>=1:
+      if passageNord(plat['Matrice'][cartAccessibles[i][0]][cartAccessibles[i][1]],plat['Matrice'][cartAccessibles[i][0]-1][cartAccessibles[i][1]]) and [cartAccessibles[i][0]-1,cartAccessibles[i][1]] not in cartAccessibles:
+        cartAccessibles.append([cartAccessibles[i][0]-1,cartAccessibles[i][1]])
+      if [ligA, colA] in cartAccessibles:
+        route = cartAccessibles
+    
+    if cartAccessibles[i][0]<=5:
+      if passageSud(plat['Matrice'][cartAccessibles[i][0]][cartAccessibles[i][1]],plat['Matrice'][cartAccessibles[i][0]+1][cartAccessibles[i][1]]) and [cartAccessibles[i][0]+1,cartAccessibles[i]  [1]] not in cartAccessibles:
+        cartAccessibles.append([cartAccessibles[i][0]+1,cartAccessibles[i][1]])
+      if [ligA, colA] in cartAccessibles:
+        route = cartAccessibles
+    
+    if cartAccessibles[i][1]<=5:
+      if passageEst(plat['Matrice'][cartAccessibles[i][0]][cartAccessibles[i][1]],plat['Matrice'][cartAccessibles[i][0]][cartAccessibles[i][1]+1]) and [cartAccessibles[i][0],cartAccessibles[i]  [1]+1] not in cartAccessibles:
+        cartAccessibles.append([cartAccessibles[i][0],cartAccessibles[i][1]+1])
+      if [ligA, colA] in cartAccessibles:
+        route = cartAccessibles
+    
+    if cartAccessibles[i][1]>=1:
+      if passageOuest(plat['Matrice'][cartAccessibles[i][0]][cartAccessibles[i][1]],plat['Matrice'][cartAccessibles[i][0]][cartAccessibles[i][1]-1]) and [cartAccessibles[i][0],cartAccessibles[i][1]-1] not in cartAccessibles:
+        cartAccessibles.append([cartAccessibles[i][0],cartAccessibles[i][1]-1])
+      if [ligA, colA] in cartAccessibles:
+        route = cartAccessibles
+
+  for i in range(len(route)):
+    for j in range(len(route)-1,0,-1):
+      if route[i+1][0]==route[i][0]+1 or route[i+1][0]==route[i][0]-1:
+        chemin.append(route[i])
+      if route[j+1][0]==route[i][0]+1 or route[j+1][0]==route[i][0]-1:
+        chemin.append(route[j])
+  
+  return chemin
+
+'''if __name__ == '__main__':
+  plat = Plateau(4, 5)
   print('Vérification création du plateau:',plat)
   print('Vérification création cartes amovibles:',creerCartesAmovibles(1,5))
   print('Vérification suppression du trésor:', prendreTresorPlateau(plat,0,0,1))
@@ -217,3 +289,5 @@ if __name__ == '__main__':
   print('Vérification suppresion pion en lig,col:', plat)
   poserPionPlateau(plat,0,1,4)
   print('Vérification pose pion en lig,col:', plat)
+  print('Verification accessibilité chemin:', accessible(plat,6,6,5,5))
+  print('Verification chemin:', accessibleDist(plat,6,6,5,5))'''

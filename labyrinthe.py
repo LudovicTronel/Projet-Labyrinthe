@@ -145,7 +145,7 @@ def getCarteAJouer(labyrinthe):
     paramètre: labyrinthe: le labyrinthe considéré
     résultat: la carte à jouer    
     """    
-    pass
+    return labyrinthe['Plateau']['CarteRestante']
 
 def coupInterdit(labyrinthe,direction,rangee):
     """ 
@@ -251,7 +251,7 @@ def finirTour(labyrinthe):
     pass
 
 if __name__=='__main__':
-  lab = Labyrinthe(nomsJoueurs=["Ludovic","Océanne","Damien"],nbTresors=12, nbTresorsMax=0)
+  lab = Labyrinthe(nomsJoueurs=["Ludovic","Océanne"],nbTresors=12, nbTresorsMax=0)
   print('L initialisation du labyrinthe est:',lab)
   print('Le plateau du labyrinthe est:',getPlateau(lab))
   print('Il y a',getNbParticipants(lab),'participant(s) dans la partie.')
@@ -268,6 +268,7 @@ if __name__=='__main__':
   print('Verification de l enlèvement du joueur courant:', lab)
   poserJoueurCourant(lab,5,5)
   print('Verification du placement joueur courant:', lab)
+  print('Verification carte à jouer:', getCarteAJouer(lab))
   print('Le prochain trésor à trouver pour le joueur courant porte le n°',getTresorCourant(lab))
   print('Le tresor que le joueur courant doit trouvé à pour coordonnées:', getCoordonneesTresorCourant(lab))
   print('Le joueur courant a pour coordonnées:', getCoordonneesJoueurCourant(lab))
