@@ -162,7 +162,15 @@ def saisirOrdre(lmt):
               c'est à dire le numéro de la ligne ou de la colonne où insérer la carte
               si l'ordre saisi n'est pas valide la focntion retourne (-1,-1)
     """
-    pass
+    ordre = input('Saisissez un ordre:')
+    listordre = []
+    for elem in ordre:
+      listordre.append(elem)
+    if ordre == 'T':
+      return (ordre, None)
+    elif listordre[0] in ('N', 'E', 'S', 'O') and listordre[1] in (1, 3, 5):
+      return (ordre[0], ordre[1])
+    return (-1, -1)
 
 def saisirDeplacement(lmt):
     """
@@ -268,5 +276,3 @@ if __name__=='__main__':
     g=LabyrintheTexte(l)
     #démarrage de la partie
     demarrer(g)
-
-if __name__=='__main__':

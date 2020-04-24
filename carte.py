@@ -23,7 +23,7 @@ def Carte( nord, est, sud, ouest, tresor=0, pions=[]):
     nord, est, sud et ouest sont des booléens indiquant s'il y a un mur ou non dans chaque direction
     tresor est le numéro du trésor qui se trouve sur la carte (0 s'il n'y a pas de trésor)
     pions est la liste des pions qui sont posés sur la carte (un pion est un entier entre 1 et 4)"""
-    carte = {'Nord': nord, 'Est': est, 'Sud': sud, 'Ouest': ouest, 'Tresor': tresor, 'Pions': pions}
+    carte = {'Nord': nord, 'Est': est, 'Sud': sud, 'Ouest': ouest, 'Tresor': tresor, 'Pions': [pions]}
     return carte
 
 def estValide(c):
@@ -293,9 +293,9 @@ def passageEst(carte1,carte2):
         return  False
 
 if __name__=='__main__':
-    c = Carte(False, True, True, False, 1)
-    c1 = Carte(False, False, True, False)
-    c2 = Carte(False, False, False, True)
+    c = Carte(False, True, True, False, 1, 0)
+    c1 = Carte(False, False, True, False, 0, 0)
+    c2 = Carte(False, False, False, True, 0, 0)
     print('Paramètres de la carte:',c)
     print('La carte est-elle valide ?', estValide(c))
     print('La carte possède un mur au Nord ?', murNord(c))

@@ -44,7 +44,10 @@ def getNbColonnes(matrice):
   retourne le nombre de colonnes de la matrice
   paramètre: matrice la matrice considérée
   """
-  return len(matrice[0])
+  res = 0
+  for i in range(len(matrice)):
+    res+=1
+  return res
 
 
 def getVal(matrice,ligne,colonne):

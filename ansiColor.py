@@ -43,4 +43,3 @@ def pcouleur(texte,couleurCar=9,couleurFond=9,style=0):
 
 clearscreen()
 
-if __name__=='__main__':
